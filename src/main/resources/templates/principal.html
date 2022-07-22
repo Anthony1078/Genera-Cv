@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <!-- Favicon -->   
+	<link href="https://www.cuerpomente.com/medio/2022/05/17/libros-sobre-el-amor_661d826b_1200x1200.jpg" rel="shortcut icon"/>
+
+    <title>Genera tu Cv</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/fontawesome.css">
+<!-- ico-font-->
+<link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/icofont.css">
+<!-- Themify icon-->
+<link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/themify.css">
+<!-- Flag icon-->
+<link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/flag-icon.css">
+<!-- Feather icon-->
+<link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/feather-icon.css">
+<!-- Plugins css start-->
+  <link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/chartist.css">
+  <link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/date-picker.css">
+  <link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/prism.css">
+  <link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/vector-map.css">
+<!-- Plugins css Ends-->
+<!-- Bootstrap css-->
+<link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/bootstrap.css">
+<!-- App css-->
+<link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/style.css">
+<link id="color" rel="stylesheet" href="https://laravel.pixelstrap.com/viho/assets/css/color-1.css" media="screen">
+<!-- Responsive css-->
+<link rel="stylesheet" type="text/css" href="https://laravel.pixelstrap.com/viho/assets/css/responsive.css"> 
+<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+ </head>
+  <body>
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="theme-loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-sidebar" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-main-header">
+  <div class="main-header-right row m-0">
+    <div class="main-header-left">
+      <div class="logo-wrapper"><a href="#">
+    	<img th:src="@{/img/logo.png}" id="imagen" class="img-circle"/>
+      </a></div>
+      <div class="dark-logo-wrapper"><a href="#">
+       <img th:src="@{/img/logo.png}" id="imagen" class="img-circle"/>
+      </a></div>
+      <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle">    </i></div>
+    </div>
+    <div class="left-menu-header col">
+    
+     	<li th:if="${usuario.rol} != 'Administrador'" class="onhover-dropdown p-0" >
+          <a href="/SobreNosotros.html" class="btn btn-primary-light" type="button" target="_blank">Sobre nosotros</a>
+        </li>
+        
+        <li id="btn-politica" th:if="${usuario.rol} != 'Administrador'" class="onhover-dropdown p-0" style="margin-left: 3rem;">
+          <a  href="/PoliticadePrivacidad.html" class="btn btn-primary-light" type="button" target="_blank">Politica de privacidad</a>
+        </li>
+        
+    </div>
+    <div class="nav-right col pull-right right-menu p-0">
+      <ul class="nav-menus">
+      
+        <li id="btn-contactanos" th:if="${usuario.rol} != 'Administrador'" class="onhover-dropdown p-0" style="margin-right: 37.9rem;position: absolute;">
+          <a  href="/Contactanos.html" class="btn btn-primary-light" type="button" target="_blank">Contáctanos</a>
+        </li>      
+        
+      
+       
+        <li class="onhover-dropdown p-0">
+          <a href="/login/cargar" class="btn btn-primary-lightss" type="button"><i data-feather="log-out"></i>  Cerrar Sesión</a>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="d-lg-none mobile-toggle pull-right w-auto"><i data-feather="more-horizontal"></i></div>
+  </div>
+</div>
+      <!-- Page Header Ends -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper sidebar-icon">
+        <!-- Page Sidebar Start-->
+        <header class="main-nav">
+    <div class="sidebar-user text-center">
+        <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="https://laravel.pixelstrap.com/viho/assets/images/dashboard/1.png" alt="" />
+        <!-- <div class="badge-bottom"><span class="badge badge-primary">New</span></div>-->
+        <a href="user-profile"> <h6 class="mt-3 f-14 f-w-600" th:text="${usuario.nombre}+' '+${usuario.apellido}"></h6></a>
+       <!-- <p class="mb-0 font-roboto">ADMINISTRADOR</p> -->
+       
+     <div th:switch="${usuario.rol}"> 
+		  <p th:case="'Administrador'">ADMINISTRADOR</p>
+		  <p th:case="''">USUARIO</p>
+	</div>
+        
+    </div>
+    <nav th:switch="${usuario.rol}">
+        <div th:case="'Administrador'" class="main-navbar">
+            <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+            <div id="mainnav">
+                <ul class="nav-menu custom-scrollbar">
+                    <li class="back-btn">
+                        <div class="mobile-back text-end"><span>Back</span></div>
+                    </li>
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>General</h6>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav  active" href="javascript:void(0)"><i data-feather="home"></i><span>Dashboard</span></a>       
+                        <ul class="nav-submenu menu-content" style="display: block;">
+                            <li><a href="#" class="">Listado de usuarios</a></li>
+                            <li><a href="#" class="">Subdominios</a></li>
+                        </ul>
+                    </li>
+                  
+                    
+                   
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Reportes</h6>
+                        </div>
+                    </li>
+                    <li>
+                        
+                    </li>
+                    <li>
+                        <a class="nav-link menu-title link-nav " href="#"><i data-feather="file"></i><span>Usuarios</span></a>
+                    </li>
+                  
+                  
+                </ul>
+            </div>
+            <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+        </div>
+        
+        
+        <div th:case="null" class="main-navbar">
+            <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+            <div id="mainnav">
+                <ul class="nav-menu custom-scrollbar">
+                    <li class="back-btn">
+                        <div class="mobile-back text-end"><span>Back</span></div>
+                    </li>
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>General Usuario</h6>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav  active" href="javascript:void(0)"><i data-feather="home"></i><span>Inicio</span></a>       
+                        <ul class="nav-submenu menu-content" style="display: block;">
+                            <li><a href="#" class="">Datos Personales</a></li>
+                            <li><a href="#" class="">Generar Curriculum</a></li>
+                        </ul>
+                    </li>
+                  
+                </ul>
+            </div>
+            <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+        </div>
+    </nav>
+</header>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+        
+      <!-- Container-fluid starts-->
+      <div th:if="${usuario.rol} == 'Administrador'" class="container-fluid dashboard-default-sec">
+        <h1>Bienvenido ADMINISTRADOR</h1>
+        
+         
+         <h5 class="mb-5">Para generar un listado de Usuario</h5>
+         
+         <table class="table">
+            <thead>
+           <tr>
+            <th>codigo</th>
+            <th>nombres</th>
+            <th>apellido </th>
+            <th>fecha de nacimiento </th>
+            <th>correo</th>
+            <th>rol</th>
+            </tr>
+            
+            </thead>
+         
+         <tbody>
+            <tr th:each="m : ${listaUsuarios}">
+			       <td th:text="${m.codigo}"></td>
+					<td th:text="${m.nombre}"></td>
+					<td th:text="${m.apellido}"></td>
+					<td th:text="${m.fechanacimiento}"></td>
+					<td th:text="${m.correo}"></td>
+					<td th:text="${m.rol}"></td>
+            </tr> 
+            
+            
+                
+         </tbody>
+         </table>     
+      
+      </div>
+      
+     
+      <div th:if="${usuario.rol} != 'Administrador'">
+      
+      
+	      <div class="container">
+	      
+		      <div id="set1" class="" >  
+		      
+				  <h1 th:text="'Bienvenido ' + ${usuario.nombre}"></h1>
+			        <h5 class="mb-5">Para generar tu portafolio debes ingresar tus datos</h5>
+					        
+					        <form>        
+								        
+									<div class="row">
+									        <div class="col-md-3">
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Dni:</label>
+												    <input id="input-dni" type="text" class="form-control" style="width: 95%;" maxlength="8" pattern="[0-9]{8}">			   
+												 </div>
+									        </div>
+									         <div class="col-md-2">  
+												   <a th:onclick="verificarxdni()" class="btn btn-success" style="margin-top:14%;padding: 6px 59px;">Validar</a>			
+									        </div>       
+									        <div class="col-md-3">     
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Nombres:</label>
+												    <input id="input-nombres" type="text" class="form-control" disabled>
+												 </div>        
+									        </div>
+									        <div class="col-md-2">
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Apellido Paterno:</label>
+												    <input id="input-apellidoPat" type="text" class="form-control" disabled>
+												 </div>
+									        </div>
+									        <div class="col-md-2">
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Apellido Materno:</label>
+												    <input id="input-apellidoMat" type="text" class="form-control" disabled>
+												 </div>
+									        </div>
+									</div>	
+									
+									<div class="row">
+									        <div class="col-md-2">
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Fecha de nacimiento:</label>
+												    <input id="input-fecha" type="text" class="form-control" disabled>
+												 </div>      
+									        </div>
+									         <div class="col-md-2">  
+										   		 <div class="form-group">
+												    <label for="exampleFormControlInput1">Sexo:</label>
+												    <input id="input-sexo" type="text" class="form-control" disabled>
+												 </div>      
+									        </div>       
+									        <div class="col-md-3">     
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Estado civil:</label>
+												    <input id="input-estado" type="text" class="form-control" disabled>
+												 </div>        
+									        </div>
+									        
+									</div>
+									
+									<div class="row">
+											<div class="col-md-11">
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Dirección:</label>
+												    <input id="input-direccion" type="text" class="form-control" disabled>
+												 </div>
+									        </div>									
+									</div>
+									
+									<div id="fila-input-comp" class="row">
+									        <div class="col-md-3">
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Telefono:</label>
+												    <input id="input-fono" type="text" class="form-control" maxlength="9">
+												 </div>      
+									        </div>									          
+									        <div class="col-md-5">     
+									        	<div class="form-group">
+												    <label for="exampleFormControlInput1">Correo Electrónico:</label>
+												    <input id="input-email" type="email" class="form-control">
+												 </div>        
+									        </div>
+									        <div class="col-md-4">									        	
+									        </div>
+									</div>		
+							 
+						    </form>
+						    
+						     <div class="row">
+                                   <div class="col-md-4"></div>                                   
+                                    <div class="col-md-4"></div>                                   
+                                    <div class="col-md-4">
+                                    	<a id="btn-continuar-set1" class="btn btn-success mt-5" type="button" style="float: right;display:none">Continuar <i data-feather="arrow-right"></i></a>
+                                  
+                                   </div>
+                             </div>      
+		      
+		      </div>    
+		      
+		      
+		      <div id="set2" class="" style="display:none">  	
+		      
+		      			<div class="row mt-4 mb-4"><h2 class="mb-3 text-center">Información necesaria para el portafolio</h2></div> 
+				   
+				      <form class="mt-4">        
+								        
+							<div class="row">	
+							
+									<div class="col-md-1">							        	
+							        </div>	
+							        <div class="col-md-4">
+							        	<div class="form-group">
+										    <label for="exampleFormControlInput1">Descripción sobre mi: <b style="color:red">*</b></label>
+										    <textarea class="form-control" id="txt-desc-mi" rows="3"></textarea>
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Carrera: <b style="color:red">*</b></label>
+										    <input id="input-carrera" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Conocimientos de la carrera: <b style="color:red">*</b></label>
+										    <input id="input-conocimientos" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Idiomas: <b style="color:red">*</b></label>
+										    <input id="input-idiomas" type="text" class="form-control">
+										 </div>
+										 
+							        </div>
+							        
+							        <div class="col-md-2">							        	
+							        </div>
+							        
+							        <div class="col-md-4">
+							        
+							        <h5 class="mb-3">Educación superior</h5>
+							        
+							        	<div class="form-group">
+										    <label for="exampleFormControlInput1">Instituto o Universidad: <b style="color:red">*</b></label>
+										    <input id="input-institucion" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Rango de fechas: <b style="color:red">*</b></label>
+										    <input id="input-fechainst" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Breve descripción: <b style="color:red">*</b></label>
+										    <textarea id="txt-desc-edu" class="form-control" rows="3"></textarea>
+										 </div>
+							        </div>
+							        
+							       <div class="col-md-1">							        	
+							        </div>
+							</div>								
+						
+				    </form>
+				    
+				     <div class="row">
+                           <div class="col-md-4"></div>                                   
+                            <div class="col-md-4"></div>                                   
+                            <div class="col-md-4">
+                            	<a id="btn-continuar-set2" class="btn btn-success mt-5" type="button" style="float: right;">Continuar <i data-feather="arrow-right"></i></a>
+                           </div>
+                     </div>      
+		      
+		      </div>    
+		      
+		      
+		      <div id="set3" class="" style="display:none">  	      
+		      
+				   <div class="row mt-4 mb-4"><h2 class="mb-3 text-center">Información necesaria para el portafolio</h2></div> 
+				     
+				     <form class="mt-4">        
+								        
+							<div class="row">	
+							
+									<div class="col-md-1">							        	
+							        </div>	
+							        <div class="col-md-4">
+							       		 <h5 class="mb-4">Experiencia Laboral</h5>	
+							       		 
+							       		 <div class="form-group">
+										    <label for="exampleFormControlInput1">Empresa: <b style="color:red">*</b></label>
+										    <input id="input-empresa" type="text" class="form-control">
+										 </div>						        	
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Puesto: <b style="color:red">*</b></label>
+										    <input id="input-puestoemp" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Rango de fechas: <b style="color:red">*</b></label>
+										    <input id="input-fechalab" type="text" class="form-control">
+										 </div>									 
+										 										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Breve descripción: <b style="color:red">*</b></label>
+										    <textarea class="form-control" id="txt-desc-labo" rows="3"></textarea>
+										 </div>
+										 
+							        </div>
+							        
+							        <div class="col-md-2">							        	
+							        </div>
+							        
+							        <div class="col-md-4">
+							        
+							        <h5 class="mb-4">Link de tus redes sociales</h5>
+							        
+							        	<div class="form-group">
+										    <label for="exampleFormControlInput1">Linkedin: <b style="color:red">*</b></label>
+										    <input id="input-linkedin" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Twitter: <b style="color:red">*</b></label>
+										    <input id="input-twitter" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Instagram: <b style="color:red">*</b></label>
+										    <input id="input-insta" type="text" class="form-control">
+										 </div>
+										 
+										 <div class="form-group">
+										    <label for="exampleFormControlInput1">Facebook: <b style="color:red">*</b></label>
+										    <input id="input-faceb" type="text" class="form-control">
+										 </div>										 
+										 
+							        </div>
+							        
+							       <div class="col-md-1">							        	
+							        </div>
+							</div>								
+						
+				    </form>
+				    
+				     <div class="row">
+                           <div class="col-md-4"></div>                                   
+                            <div class="col-md-4"></div>                                   
+                            <div class="col-md-4">
+                            	<a id="btn-continuar-set3" class="btn btn-success mt-5" type="button" style="float: right;">Continuar <i data-feather="arrow-right"></i></a>
+                           </div>
+                     </div>   
+		      
+		      </div>    
+		      
+		      
+		      
+		       <div id="set4" class="" style="display:none" >  	
+		       
+		             
+				   
+				     <form class="mt-4" action="/saveImagen" method="post" th:object="${persona}" enctype="multipart/form-data">        
+								        
+							<div class="row">	
+							
+									<div class="col-md-1">							        	
+							        </div>	
+							        <div class="col-md-4">
+							       		 <h5 class="mb-4">Para darle más profesionalismo ingrese su foto:</h5>	
+							       		 
+							       		  <input type="hidden" id="dnioculto" name="dnioculto" class="form-control" required>
+							       		  
+							       		 <div class="form-group">
+										    <label for="exampleFormControlInput1">Foto: <b style="color:red">*</b></label>
+										    <input id="file" name="file" type="file" class="form-control">
+										 </div>		
+										 
+							        </div>
+							        
+							        <div class="col-md-2">							        	
+							        </div>
+							        
+							        <div class="col-md-4">
+							        
+							        <h5 class="mb-4">Foto:</h5>
+							        
+						        				<center>
+                                                    <br>
+                                                    <output id="list" style="margin-top: 0px"></output>
+                                                </center>																 
+										 
+							        </div>
+							        
+							       <div class="col-md-1">							        	
+							        </div>
+							</div>	
+							
+							<div class="row mt-5">
+                          	 <div class="col-md-4"></div>                                   
+                             <div class="col-md-4"></div>                                   
+                             <div class="col-md-4">
+                            	<button id="btn-Generar-Portafolio" class="btn btn-success mt-5" type="submit" style="float: right;display:none">Generar Portafolio <i data-feather="arrow-right"></i></button>
+                             </div>
+                     </div>   							
+						
+				    </form>
+				    
+				     
+		      
+		      </div>    
+	      
+	      
+	      </div>      
+      
+      </div>
+      <!-- Container-fluid Ends-->
+            
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 footer-copyright text-center">
+                <p class="mb-0">Copyright 2022 © todos los derechos reservados.</p>
+              </div>
+              
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- latest jquery-->
+    <script src="https://laravel.pixelstrap.com/viho/assets/js/jquery-3.5.1.min.js"></script>
+<!-- feather icon js-->
+<script src="https://laravel.pixelstrap.com/viho/assets/js/icons/feather-icon/feather.min.js"></script>
+<script src="https://laravel.pixelstrap.com/viho/assets/js/icons/feather-icon/feather-icon.js"></script>
+<!-- Sidebar jquery-->
+<script src="https://laravel.pixelstrap.com/viho/assets/js/sidebar-menu.js"></script>
+<!-- <script src="https://laravel.pixelstrap.com/viho/assets/js/config.js"></script> -->
+<!-- Bootstrap js-->
+<script src="https://laravel.pixelstrap.com/viho/assets/js/bootstrap/popper.min.js"></script>
+<script src="https://laravel.pixelstrap.com/viho/assets/js/bootstrap/bootstrap.min.js"></script>
+<!-- Theme js-->
+<script src="https://laravel.pixelstrap.com/viho/assets/js/script.js"></script>
+<!-- <script src="https://laravel.pixelstrap.com/viho/assets/js/theme-customizer/customizer.js"></script> -->
+<!-- Plugin used-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="../funcion.js"></script>
+  </body>
+</html>
+
+<script>
+        function archivo(evt) {
+            var files = evt.target.files; // FileList object
+            // Obtenemos la imagen del campo "file".
+            for (var i = 0, f; f = files[i]; i++) {
+                //Solo admitimos imágenes.
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        // Insertamos la imagen
+                        document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="',e.target.result, '" width="230px" height="250px" title="', escape(theFile.name), '"/>'].join('');
+                                             
+                        $("#btn-Generar-Portafolio").attr("style","display:block!important;");
+                    };
+                })(f);
+                reader.readAsDataURL(f);
+            }
+        }
+        document.getElementById('file').addEventListener('change', archivo, false);
+
+        
+
+    </script>
+
+<style>
+
+ .swal2-popup{
+	 background: #fff!important;
+ }
+ 
+ 
+svg {
+    vertical-align: inherit!important;
+}
+   
+
+.btn-primary-lightss {
+  background-color: rgba(245, 41, 41, 0.726) !important;
+  border: none !important;
+  color: #24695c94;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; }
+  .btn-primary-lightss:focus, .btn-primary-lightss:hover {
+    background-color: rgba(245, 10, 10, 0.5) !important;
+    color: #fff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s; }
+
+@media only screen and  (max-width: 1550) {
+		
+		
+	#btn-politica{
+		margin-left: 1rem!important;
+	}
+	
+	#btn-contactanos{
+		margin-right: 27.9rem!important;
+	}
+
+
+}
+
+</style>
